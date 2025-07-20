@@ -16,10 +16,8 @@ const SubmitFormPage = () => {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        // NOTE: Assumes an endpoint GET /api/forms/:id to fetch a single form's structure
         const res = await api.get(`/forms/${formId}`);
         setForm(res.data);
-        // Initialize responses state
         const initialResponses = {};
         res.data.fields.forEach(field => {
           initialResponses[field.label] = '';
@@ -67,10 +65,12 @@ const SubmitFormPage = () => {
   if (error) return <div className="text-red-500 text-center mt-10">{error}</div>;
 
   return (
-    <div className="container mx-auto p-6">
+    // --- RESPONSIVE CHANGE: Padding adjusted ---
+    <div className="container mx-auto p-4 sm:p-6">
       {form && (
-        <div className="bg-white p-8 rounded-lg shadow-md mt-10 max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold mb-2 text-gray-800">{form.title}</h2>
+        // --- RESPONSIVE CHANGE: Padding adjusted ---
+        <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md mt-4 md:mt-10 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">{form.title}</h2>
           <p className="text-gray-600 mb-8">{form.description}</p>
           
           {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
@@ -85,8 +85,9 @@ const SubmitFormPage = () => {
                 onChange={handleChange}
               />
             ))}
+            {/* --- RESPONSIVE CHANGE: Button is full-width on mobile --- */}
             <div className="text-right">
-              <button type="submit" disabled={loading} className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300">
+              <button type="submit" disabled={loading} className="w-full sm:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300">
                 {loading ? <Spinner /> : 'Submit Response'}
               </button>
             </div>

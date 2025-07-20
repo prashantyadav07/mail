@@ -13,14 +13,15 @@ const UserLayout = () => {
   const activeLinkClass = "bg-indigo-100 text-indigo-700";
   const inactiveLinkClass = "text-gray-600 hover:bg-gray-100 hover:text-gray-900";
 
-  // This hook clears the notification count whenever the user is inside this layout.
   useEffect(() => {
     clearNotificationCount();
   }, [clearNotificationCount]);
 
   return (
-    <div className="flex">
-      <aside className="w-64 bg-white shadow-md h-screen p-4">
+    // --- RESPONSIVE CHANGE: Layout stacks vertically on mobile, horizontally on medium+ screens ---
+    <div className="flex flex-col md:flex-row">
+      {/* --- RESPONSIVE CHANGE: Sidebar is full-width on mobile, fixed on desktop --- */}
+      <aside className="w-full md:w-64 bg-white shadow-md md:h-screen p-4">
         <h2 className="text-xl font-bold mb-6 text-gray-800">User Menu</h2>
         <nav className="space-y-2">
           <NavLink
@@ -35,10 +36,10 @@ const UserLayout = () => {
               </span>
             )}
           </NavLink>
-          {/* You can add more user-specific links here in the future */}
         </nav>
       </aside>
-      <main className="flex-1 p-8 bg-gray-100">
+      {/* --- RESPONSIVE CHANGE: Padding adjusted for different screen sizes --- */}
+      <main className="flex-1 p-4 sm:p-8 bg-gray-100">
         <Outlet />
       </main>
     </div>

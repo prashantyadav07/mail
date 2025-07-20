@@ -27,8 +27,9 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">Manage Users</h2>
-      <div className="bg-white shadow rounded-lg overflow-hidden">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">Manage Users</h2>
+      {/* --- RESPONSIVE CHANGE: Added a container to allow horizontal scrolling on small screens --- */}
+      <div className="bg-white shadow rounded-lg overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>

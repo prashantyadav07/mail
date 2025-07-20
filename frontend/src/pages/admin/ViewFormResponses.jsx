@@ -13,14 +13,9 @@ const ViewFormResponses = () => {
     const fetchResponses = async () => {
       try {
         setLoading(true);
-
-        // --- THIS IS THE CORRECTED API ENDPOINT ---
-        // It now matches the backend route: /api/responses/form/:formId
         const res = await api.get(`/responses/form/${formId}`);
-        
         setResponses(res.data.responses);
       } catch (err) {
-        // This console.error is helpful for debugging
         console.error("AxiosError", err);
         setError('Failed to fetch responses. Check console for details.');
       } finally {
@@ -34,8 +29,9 @@ const ViewFormResponses = () => {
   if (error) return <div className="text-red-500 text-center mt-10">{error}</div>;
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">Form Responses</h2>
+    // --- RESPONSIVE CHANGE: Padding adjusted for mobile ---
+    <div className="container mx-auto p-4 sm:p-6">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">Form Responses</h2>
       <p className="mb-4 text-gray-600">Total Responses: {responses.length}</p>
 
       {responses.length === 0 ? (
@@ -43,7 +39,8 @@ const ViewFormResponses = () => {
       ) : (
         <div className="space-y-6">
           {responses.map((response) => (
-            <div key={response._id} className="bg-white p-6 rounded-lg shadow-md border">
+            // --- RESPONSIVE CHANGE: Card padding adjusted ---
+            <div key={response._id} className="bg-white p-4 sm:p-6 rounded-lg shadow-md border">
               <div className="border-b pb-3 mb-4">
                 <h3 className="text-xl font-semibold text-indigo-700">
                   {response.user ? response.user.name : 'Anonymous User'}
@@ -58,7 +55,7 @@ const ViewFormResponses = () => {
               
               <div className="space-y-4">
                 {response.responses.map((field, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-md">
+                  <div key={index} className="bg-gray-50 p-3 sm:p-4 rounded-md">
                     <p className="font-semibold text-gray-800">{field.label}</p>
                     <p className="text-gray-600 break-words">{field.answer || 'No answer provided'}</p>
                   </div>

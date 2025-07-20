@@ -24,8 +24,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+    // --- RESPONSIVE CHANGE: Added horizontal padding for mobile viewports ---
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      {/* --- RESPONSIVE CHANGE: Adjusted padding for different screen sizes --- */}
+      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h2 className="text-3xl font-bold text-center text-gray-900">Create Account</h2>
         {error && <p className="text-red-500 text-center">{error}</p>}
         {success && <p className="text-green-500 text-center">{success}</p>}

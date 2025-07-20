@@ -1,0 +1,16 @@
+# .env and local secrets
+.env
+.env.*
+
+# Node.js
+node_modules/
+dist/
+build/
+
+# Logs
+logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
